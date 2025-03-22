@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -18,4 +19,5 @@ def fetch_data():
     return jsonify(latest_data)
 
 if __name__ == '__main__':
-    app.run()  # Ensure it's accessible on the network
+    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port
+    app.run(host='0.0.0.0', port=port)
